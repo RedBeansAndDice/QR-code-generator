@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>QR code coding</title>
+
+</head>
+<body>
+<form name="myForm" method="post" id='myForm'>
+Enter text here to turn into QR code: <input type="text" name="fname">
+<input type="submit" value="Submit">
+</form> 
+<span id="generatedFrom"></span><br>
+<div id="QRcodeImage"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.qrcode.min.js"></script>
+<script>
+document.getElementById("myForm").onsubmit = function() {validateForm()};
+function validateForm() {
+  var x = document.forms["myForm"]["fname"].value;
+  if (x == "") {
+    alert("Name must be filled out");
+    return false;
+  } else {
+	var formElement = document.getElementById('myForm');
+	//formElement.style.display = "none";
+	formElement.outerHTML = '';
+	jQuery(function(){
+		//var randomNumber = Math.random();
+		//alert(randomNumber);
+		jQuery('#QRcodeImage').qrcode(x.toString());
+		//var canvas = document.getElementById("qrcodecanvas");
+		//var img = canvas.toDataURL("image/png");
+		//document.write('<img src="'+img+'"/>');
+		document.getElementById('generatedFrom').innerHTML = x;
+		console.log('hello');
+
+		var link = document.getElementById('downloadLink')
+		link.download = 'filename.png';
+		var temp = document.getElementsByTagName('canvas');
+		console.log(temp[0]);
+		link.href = temp[0].toDataURL('image/png');
+		//link.click();
+		})
+  }
+} 
+</script>
+
+
+
+
+</body>
+
+<a id = 'downloadLink'>Download QR code image as png file</a>
+
+
+</html>
