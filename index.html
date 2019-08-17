@@ -35,7 +35,8 @@ function validateForm() {
 		console.log('hello');
 
 		var link = document.getElementById('downloadLink')
-		link.download = 'filename.png';
+		link.text = 'Download QR code image as png file'
+		link.download = 'GrawlixRewardsQRcode.png';
 		var temp = document.getElementsByTagName('canvas');
 		console.log(temp[0]);
 		link.href = temp[0].toDataURL('image/png');
@@ -50,7 +51,7 @@ function validateForm() {
 
 </body>
 
-<a id = 'downloadLink'>Download QR code image as png file</a>
+<a id = 'downloadLink'></a>
 
 
 </html>
